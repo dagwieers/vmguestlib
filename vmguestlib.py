@@ -13,17 +13,25 @@
 ### You should have received a copy of the GNU General Public License
 ### along with this program; if not, write to the Free Software
 ### Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
 ### Copyright 2013 Dag Wieers <dag@wieers.com>
 
 from ctypes import *
+from ctypes.util import find_library
 
 __author__ = 'Dag Wieers <dag@wieers.com>'
 __version__ = '0.1.1'
 __version_info__ = tuple([ int(d) for d in __version__.split('.') ])
 __license__ = 'GNU General Public License (GPL)'
 
-vmGuestLib = cdll.LoadLibrary('/usr/lib/vmware-tools/lib/libvmGuestLib.so/libvmGuestLib.so')
+# TODO: Implement support for Windows and MacOSX, improve Linux support ?
+if find_library('vmGuestLib'):
+    vmGuestLib = CDLL(find_library('vmGuestLib'))
+#elif os.path.exists('/usr/lib/vmware-tools/lib/libvmGuestLib.so/libvmGuestLib.so'):
+#    vmGuestLib = CDLL('/usr/lib/vmware-tools/lib/libvmGuestLib.so/libvmGuestLib.so')
+#elif os.path.exists('%PROGRAMFILES%\\VMware\\VMware Tools\\Guest SDK\\vmStatsProvider\win32\\vmGuestLib.dll'):
+#    vmGuestLib = CDLL('%PROGRAMFILES%\\VMware\\VMware Tools\\Guest SDK\\vmStatsProvider\win32\\vmGuestLib.dll')
+else:
+    raise Exception, 'ERROR: Cannot find vmGuestLib library in LD_LIBRARY_PATH'
 
 VMGUESTLIB_ERROR_SUCCESS = 0
 VMGUESTLIB_ERROR_OTHER = 1
