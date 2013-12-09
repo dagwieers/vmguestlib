@@ -41,6 +41,17 @@ print
 ```
 
 
+Tools
+-----
+Tools known to be using vmguestlib:
+
+ * vmguest-stats - *Ships with this library*  
+   http://github.com/dagwieers/vmguestlib/blob/master/vmguest-stats
+
+ * Dstat - Tool to correlate many system resource statistics (options *--vm-cpu* and *--vm-mem*)
+   http://github.com/dagwieers/dstat
+
+
 Documentation
 -------------
  * Guest and HA Application Monitoring SDK for vSphere 5.5  
