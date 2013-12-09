@@ -22,6 +22,12 @@ from vmguestlib import VMGuestLib
 gl = VMGuestLib()
 gl.UpdateInfo()
 
+print 'CPU'
+print '  Stolen: %dms' % gl.GetCpuStolenMs()
+print '  Used: %dms' % gl.GetCpuUsedMs()
+print '  Elapsed: %dms' % gl.GetElapsedMs()
+print
+
 print 'Memory'
 print '  Active: %d MB' % gl.GetMemActiveMB()
 print '  Ballooned: %d MB' % gl.GetMemBalloonedMB()
@@ -31,12 +37,6 @@ print '  Shared: %d MB' % gl.GetMemSharedMB()
 print '  Shared saved: %d MB' % gl.GetMemSharedSavedMB()
 print '  Swapped: %d MB' % gl.GetMemSwappedMB()
 print '  Used: %d MB' % gl.GetMemUsedMB()
-print
-
-print 'CPU'
-print '  Stolen: %dms' % gl.GetCpuStolenMs()
-print '  Used: %dms' % gl.GetCpuUsedMs()
-print '  Elapsed: %dms' % gl.GetElapsedMs()
 print
 ```
 
@@ -57,7 +57,7 @@ Development
 -----------
 Please report bugs, improvements and feedback on GitHub at:
 
-    http://github.com/dagwieers/vmguestlib
+http://github.com/dagwieers/vmguestlib
 
 
 Packaging guidelines
