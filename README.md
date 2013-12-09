@@ -43,7 +43,6 @@ print
 
 Documentation
 -------------
-
  * Guest and HA Application Monitoring SDK for vSphere 5.5  
    http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vs550_guest_HAappmon_sdk.pdf
 
@@ -52,6 +51,19 @@ Documentation
 
  * vSphere Resource Management - ESXi 5.0  
    http://pubs.vmware.com/vsphere-50/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-50-resource-management-guide.pdf
+
+
+Development
+-----------
+Please report bugs, improvements and feedback on GitHub at:
+
+    http://github.com/dagwieers/vmguestlib
+
+
+Packaging guidelines
+--------------------
+Please package this software using the name "python-vmguestlib" on all platforms,
+and include the vmguest-stats utility as-is.
 
 
 Author and license
