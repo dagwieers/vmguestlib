@@ -45,6 +45,12 @@ Documentation
  * Guest and HA Application Monitoring SDK for vSphere 5.5  
    http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vs550_guest_HAappmon_sdk.pdf
 
+ * Understanding Memory Resource Management in VMware ESX Server  
+   http://www.vmware.com/files/pdf/perf-vsphere-memory_management.pdf
+
+ * vSphere Resource Management - ESXi 5.0  
+   http://pubs.vmware.com/vsphere-50/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-50-resource-management-guide.pdf
+
 
 Author and license
 ------------------
