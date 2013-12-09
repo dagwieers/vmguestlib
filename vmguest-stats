@@ -1,0 +1,71 @@
+#!/usr/bin/python
+
+### This program is free software; you can redistribute it and/or
+### modify it under the terms of the GNU General Public License
+### as published by the Free Software Foundation; either version 2
+### of the License, or (at your option) any later version.
+###
+### This program is distributed in the hope that it will be useful,
+### but WITHOUT ANY WARRANTY; without even the implied warranty of
+### MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+### GNU General Public License for more details.
+###
+### You should have received a copy of the GNU General Public License
+### along with this program; if not, write to the Free Software
+### Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+### Copyright 2013 Dag Wieers <dag@wieers.com>
+
+import time
+from vmguestlib import VMGuestLib
+
+# TODO: Add -c/--cpu and -m/--memory options, --help/--version and delay/count arguments
+gl = VMGuestLib()
+gl.UpdateInfo()
+
+OldElapsedMs = gl.GetElapsedMs()
+OldStolenMs = gl.GetCpuStolenMs()
+OldUsedMs = gl.GetCpuUsedMs()
+
+# TODO: Use for-loop and delay/count options
+while True:
+
+    time.sleep(1)
+    gl.UpdateInfo()
+
+    NewElapsedMs = gl.GetElapsedMs()
+    NewStolenMs = gl.GetCpuStolenMs()
+    NewUsedMs = gl.GetCpuUsedMs()
+
+    # TODO: Add clearscreen and bold/underline escape sequences
+    print 'VM Processor'
+    print '    Processor Time: %.2f %%' % ((NewUsedMs - OldUsedMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
+    print '    CPU stolen time: %.2f %%' % ((NewStolenMs - OldStolenMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
+    print '    Effective VM Speed: %d MHz' % (gl.GetHostProcessorSpeed() * (NewUsedMs - OldUsedMs) / (NewElapsedMs - OldElapsedMs))
+    print '    Host processor speed: %d MHz' % gl.GetHostProcessorSpeed()
+    print
+    print '    Limit: %d MHz' % gl.GetCpuLimitMHz()
+    print '    Reservation %d MHz' % gl.GetCpuReservationMHz()
+    print '    Shares: %d' % gl.GetCpuShares()
+    print
+    print 'VM Memory'
+    print '    Active: %d MB' % gl.GetMemActiveMB()
+    print '    Ballooned: %d MB' % gl.GetMemBalloonedMB()
+    print '    Mapped: %d MB' % gl.GetMemMappedMB()
+    print '    Overhead: %d MB' % gl.GetMemOverheadMB()
+    print '    Shared: %d MB' % gl.GetMemSharedMB()
+    print '    Shared Saved: %d MB' % gl.GetMemSharedSavedMB()
+    print '    Swapped: %d MB' % gl.GetMemSwappedMB()
+    print '    Target Size: %d MB' % gl.GetMemTargetSizeMB()
+    print '    Used: %d MB' % gl.GetMemUsedMB()
+    print
+    print '    Limit: %d MB' % gl.GetMemLimitMB()
+    print '    Reservation: %d MB' % gl.GetMemReservationMB()
+    print '    Shares: %d' % gl.GetMemShares()
+    print
+
+    OldElapsedMs = NewElapsedMs
+    OldStolenMs = NewStolenMs
+    OldUsedMs = NewUsedMs
+
+# vim:ts=4:sw=4:et
