@@ -14,58 +14,93 @@
 ### along with this program; if not, write to the Free Software
 ### Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-### Copyright 2013 Dag Wieers <dag@wieers.com>
+### Copyright 2013-2014 Dag Wieers <dag@wieers.com>
 
+import vmguestlib
+import optparse
 import time
-from vmguestlib import VMGuestLib
 
-# TODO: Add -c/--cpu and -m/--memory options, --help/--version and delay/count arguments
-gl = VMGuestLib()
+__version__ = vmguestlib.__version__
+
+delay = 2
+count = -1
+
+parser = optparse.OptionParser(usage='usage: %prog [-a] [-c] [-m] delay count', version='%prog ' + __version__)
+parser.add_option( '-a', '--all', action='store_true',
+    dest='all', help='show all statistics (default)' )
+parser.add_option( '-c', '--cpu', action='store_true',
+    dest='cpu', help='show cpu statistics' )
+parser.add_option( '-m', '--mem', action='store_true',
+    dest='memory', help='show memory statistics' )
+(options, args) = parser.parse_args()
+
+try:
+    if len(args) > 0:
+        delay = int(args[0])
+    if len(args) > 1:
+        count = int(args[1])
+except:
+    parser.error('incorrect argument, try -h for the correct syntax')
+
+if options.all or (not options.cpu and not options.memory):
+    options.cpu = True
+    options.memory = True
+
+gl = vmguestlib.VMGuestLib()
 gl.UpdateInfo()
 
-OldElapsedMs = gl.GetElapsedMs()
-OldStolenMs = gl.GetCpuStolenMs()
-OldUsedMs = gl.GetCpuUsedMs()
+if options.cpu:
+    OldElapsedMs = gl.GetElapsedMs()
+    OldStolenMs = gl.GetCpuStolenMs()
+    OldUsedMs = gl.GetCpuUsedMs()
 
-# TODO: Use for-loop and delay/count options
-while True:
+while count == -1 or count > 0:
 
-    time.sleep(1)
+    time.sleep(delay)
+
     gl.UpdateInfo()
 
-    NewElapsedMs = gl.GetElapsedMs()
-    NewStolenMs = gl.GetCpuStolenMs()
-    NewUsedMs = gl.GetCpuUsedMs()
-
     # TODO: Add clearscreen and bold/underline escape sequences
-    print 'VM Processor'
-    print '    Processor Time: %.2f %%' % ((NewUsedMs - OldUsedMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
-    print '    CPU stolen time: %.2f %%' % ((NewStolenMs - OldStolenMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
-    print '    Effective VM Speed: %d MHz' % (gl.GetHostProcessorSpeed() * (NewUsedMs - OldUsedMs) / (NewElapsedMs - OldElapsedMs))
-    print '    Host processor speed: %d MHz' % gl.GetHostProcessorSpeed()
-    print
-    print '    Limit: %d MHz' % gl.GetCpuLimitMHz()
-    print '    Reservation %d MHz' % gl.GetCpuReservationMHz()
-    print '    Shares: %d' % gl.GetCpuShares()
-    print
-    print 'VM Memory'
-    print '    Active: %d MB' % gl.GetMemActiveMB()
-    print '    Ballooned: %d MB' % gl.GetMemBalloonedMB()
-    print '    Mapped: %d MB' % gl.GetMemMappedMB()
-    print '    Overhead: %d MB' % gl.GetMemOverheadMB()
-    print '    Shared: %d MB' % gl.GetMemSharedMB()
-    print '    Shared Saved: %d MB' % gl.GetMemSharedSavedMB()
-    print '    Swapped: %d MB' % gl.GetMemSwappedMB()
-    print '    Target Size: %d MB' % gl.GetMemTargetSizeMB()
-    print '    Used: %d MB' % gl.GetMemUsedMB()
-    print
-    print '    Limit: %d MB' % gl.GetMemLimitMB()
-    print '    Reservation: %d MB' % gl.GetMemReservationMB()
-    print '    Shares: %d' % gl.GetMemShares()
-    print
+    if options.cpu:
+        NewElapsedMs = gl.GetElapsedMs()
+        NewStolenMs = gl.GetCpuStolenMs()
+        NewUsedMs = gl.GetCpuUsedMs()
 
-    OldElapsedMs = NewElapsedMs
-    OldStolenMs = NewStolenMs
-    OldUsedMs = NewUsedMs
+        print 'VM Processor'
+        print '    Processor Time: %.2f %%' % ((NewUsedMs - OldUsedMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
+        print '    CPU stolen time: %.2f %%' % ((NewStolenMs - OldStolenMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
+        print '    Effective VM Speed: %d MHz' % (gl.GetHostProcessorSpeed() * (NewUsedMs - OldUsedMs) / (NewElapsedMs - OldElapsedMs))
+        print '    Host processor speed: %d MHz' % gl.GetHostProcessorSpeed()
+        print
+        print '    Limit: %d MHz' % gl.GetCpuLimitMHz()
+        print '    Reservation %d MHz' % gl.GetCpuReservationMHz()
+        print '    Shares: %d' % gl.GetCpuShares()
+
+        OldElapsedMs = NewElapsedMs
+        OldStolenMs = NewStolenMs
+        OldUsedMs = NewUsedMs
+
+    if options.cpu and options.memory:
+        print
+
+    if options.memory:
+        print 'VM Memory'
+        print '    Active: %d MB' % gl.GetMemActiveMB()
+        print '    Ballooned: %d MB' % gl.GetMemBalloonedMB()
+        print '    Mapped: %d MB' % gl.GetMemMappedMB()
+        print '    Overhead: %d MB' % gl.GetMemOverheadMB()
+        print '    Shared: %d MB' % gl.GetMemSharedMB()
+        print '    Shared Saved: %d MB' % gl.GetMemSharedSavedMB()
+        print '    Swapped: %d MB' % gl.GetMemSwappedMB()
+        print '    Target Size: %d MB' % gl.GetMemTargetSizeMB()
+        print '    Used: %d MB' % gl.GetMemUsedMB()
+        print
+        print '    Limit: %d MB' % gl.GetMemLimitMB()
+        print '    Reservation: %d MB' % gl.GetMemReservationMB()
+        print '    Shares: %d' % gl.GetMemShares()
+        print
+
+    if count > 0:
+        count = count - 1
 
 # vim:ts=4:sw=4:et
