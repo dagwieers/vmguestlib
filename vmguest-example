@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+from vmguestlib import VMGuestLib
+
+gl = VMGuestLib()
+gl.UpdateInfo()
+
+print 'Memory'
+print '  Active: %d MB' % gl.GetMemActiveMB()
+print '  Ballooned: %d MB' % gl.GetMemBalloonedMB()
+print '  Mapped: %d MB' % gl.GetMemMappedMB()
+print '  Overhead: %d MB' % gl.GetMemOverheadMB()
+print '  Shared: %d MB' % gl.GetMemSharedMB()
+print '  Shared saved: %d MB' % gl.GetMemSharedSavedMB()
+print '  Swapped: %d MB' % gl.GetMemSwappedMB()
+print '  Used: %d MB' % gl.GetMemUsedMB()
+print
+
+print 'CPU'
+print '  Stolen: %dms' % gl.GetCpuStolenMs()
+print '  Used: %dms' % gl.GetCpuUsedMs()
+print '  Elapsed: %dms' % gl.GetElapsedMs()
+print

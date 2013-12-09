@@ -17,24 +17,26 @@ Quick Example
 ```python
 #!/usr/bin/python
 
-from vmguestlib import *
+from vmguestlib import VMGuestLib
 
 gl = VMGuestLib()
-
 gl.UpdateInfo()
-print 'Active memory:', gl.GetMemActiveMB()
-print 'Ballooned memory:', gl.GetMemBalloonedMB()
-print 'Mapped memory:', gl.GetMemMappedMB()
-print 'Overhead memory:', gl.GetMemOverheadMB()
-print 'Shared memory:', gl.GetMemSharedMB()
-print 'Shared saved memory:', gl.GetMemSharedSavedMB()
-print 'Swapped memory:', gl.GetMemSwappedMB()
-print 'Used memory:', gl.GetMemUsedMB()
+
+print 'Memory'
+print '  Active: %d MB' % gl.GetMemActiveMB()
+print '  Ballooned: %d MB' % gl.GetMemBalloonedMB()
+print '  Mapped: %d MB' % gl.GetMemMappedMB()
+print '  Overhead: %d MB' % gl.GetMemOverheadMB()
+print '  Shared: %d MB' % gl.GetMemSharedMB()
+print '  Shared saved: %d MB' % gl.GetMemSharedSavedMB()
+print '  Swapped: %d MB' % gl.GetMemSwappedMB()
+print '  Used: %d MB' % gl.GetMemUsedMB()
 print
 
-print 'Stolen:', gl.GetCpuStolenMs()
-print 'Used:', gl.GetCpuUsedMs()
-print 'Elapsed:', gl.GetElapsedMs()
+print 'CPU'
+print '  Stolen: %dms' % gl.GetCpuStolenMs()
+print '  Used: %dms' % gl.GetCpuUsedMs()
+print '  Elapsed: %dms' % gl.GetElapsedMs()
 print
 ```
 
