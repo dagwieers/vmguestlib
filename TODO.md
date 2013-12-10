@@ -9,3 +9,5 @@ The following improvements are welcome:
    * Implement proper checks for available methods
 
  - Improvements to make the library more pythonic
+
+ - Implement GetResourcePoolPath()
