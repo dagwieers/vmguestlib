@@ -159,7 +159,7 @@ class VMGuestLib(Structure):
         '''Retrieves the upperlimit of processor use in MHz available to the virtual
            machine. For information about setting the CPU limit, see "Limits and
            Reservations" on page 14.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetCpuLimitMHz(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -168,7 +168,7 @@ class VMGuestLib(Structure):
         '''Retrieves the minimum processing power in MHz reserved for the virtual
            machine. For information about setting a CPU reservation, see "Limits and
            Reservations" on page 14.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetCpuReservationMHz(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -177,7 +177,7 @@ class VMGuestLib(Structure):
         '''Retrieves the number of CPU shares allocated to the virtual machine. For
            information about how an ESX server uses CPU shares to manage virtual
            machine priority, see the vSphere Resource Management Guide.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetCpuShares(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -185,7 +185,7 @@ class VMGuestLib(Structure):
     def GetCpuStolenMs(self):
         '''Retrieves the number of milliseconds that the virtual machine was in a
            ready state (able to transition to a run state), but was not scheduled to run.'''
-        counter = c_int()
+        counter = c_uint64()
         ret = vmGuestLib.VMGuestLib_GetCpuStolenMs(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -197,7 +197,7 @@ class VMGuestLib(Structure):
            virtual machine. You can combine this value with the elapsed time
            (VMGuestLib_GetElapsedMs) to estimate the effective virtual machine
            CPU speed. This value is a subset of elapsedMs.'''
-        counter = c_int()
+        counter = c_uint64()
         ret = vmGuestLib.VMGuestLib_GetCpuUsedMs(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -211,15 +211,15 @@ class VMGuestLib(Structure):
 
            You can combine this value with the CPU time used by the virtual machine
            (VMGuestLib_GetCpuUsedMs) to estimate the effective virtual machine
-           CPU speed. cpuUsedMS is a subset of this value.'''
-        counter = c_int()
+           CPU speed. cpuUsedMs is a subset of this value.'''
+        counter = c_uint64()
         ret = vmGuestLib.VMGuestLib_GetElapsedMs(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
     def GetHostProcessorSpeed(self):
         '''Retrieves the speed of the ESX system's physical CPU in MHz.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetHostProcessorSpeed(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -227,7 +227,7 @@ class VMGuestLib(Structure):
     def GetMemActiveMB(self):
         '''Retrieves the amount of memory the virtual machine is actively using its
            estimated working set size.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemActiveMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -236,7 +236,7 @@ class VMGuestLib(Structure):
         '''Retrieves the amount of memory that has been reclaimed from this virtual
            machine by the vSphere memory balloon driver (also referred to as the
            "vmmemctl" driver).'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemBalloonedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS:
             raise VMGuestLibException(ret)
@@ -246,7 +246,7 @@ class VMGuestLib(Structure):
         '''Retrieves the upper limit of memory that is available to the virtual
            machine. For information about setting a memory limit, see "Limits and
            Reservations" on page 14.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemLimitMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -255,7 +255,7 @@ class VMGuestLib(Structure):
         '''Retrieves the amount of memory that is allocated to the virtual machine.
            Memory that is ballooned, swapped, or has never been accessed is
            excluded.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemMappedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -265,7 +265,7 @@ class VMGuestLib(Structure):
            machine that is currently consumed on the host system. Overhead
            memory is additional memory that is reserved for data structures required
            by the virtualization layer.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemOverheadMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -274,7 +274,7 @@ class VMGuestLib(Structure):
         '''Retrieves the minimum amount of memory that is reserved for the virtual
            machine. For information about setting a memory reservation, see "Limits
            and Reservations" on page 14.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemReservationMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -283,7 +283,7 @@ class VMGuestLib(Structure):
     def GetMemSharedMB(self):
         '''Retrieves the amount of physical memory associated with this virtual
            machine that is copy-on-write (COW) shared on the host.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemSharedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -291,7 +291,7 @@ class VMGuestLib(Structure):
     def GetMemSharedSavedMB(self):
         '''Retrieves the estimated amount of physical memory on the host saved
            from copy-on-write (COW) shared guest physical memory.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemSharedSavedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -300,7 +300,7 @@ class VMGuestLib(Structure):
         '''Retrieves the number of memory shares allocated to the virtual machine.
            For information about how an ESX server uses memory shares to manage
            virtual machine priority, see the vSphere Resource Management Guide.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemShares(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -308,14 +308,14 @@ class VMGuestLib(Structure):
     def GetMemSwappedMB(self):
         '''Retrieves the amount of memory that has been reclaimed from this virtual
            machine by transparently swapping guest memory to disk.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemSwappedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
     def GetMemTargetSizeMB(self):
         '''Retrieves the size of the target memory allocation for this virtual machine.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemTargetSizeMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
@@ -323,7 +323,7 @@ class VMGuestLib(Structure):
     def GetMemUsedMB(self):
         '''Retrieves the estimated amount of physical host memory currently
            consumed for this virtual machine's physical memory.'''
-        counter = c_int()
+        counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemUsedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
