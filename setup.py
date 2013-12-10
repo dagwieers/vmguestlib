@@ -15,7 +15,7 @@ if __name__ == '__main__':
         author='Dag Wieers',
         author_email='dag@wieers.com',
         url='http://github.com/dagwieers/vmguestlib',
-        download_url='http://github.com/dagwieers/vmguestlib/archive/vmguestlib-0.1.1.tar.gz',
+        download_url='http://github.com/dagwieers/vmguestlib/archive/0.1.1.tar.gz',
         description='Python API for interacting with VMware\'s VMGuestLib SDK',
         license = 'GPL',
         py_modules = ['vmguestlib', ],
