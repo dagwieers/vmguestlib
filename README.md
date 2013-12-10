@@ -48,7 +48,7 @@ Tools known to be using vmguestlib:
  * vmguest-stats - *Ships with this library*  
    http://github.com/dagwieers/vmguestlib/blob/master/vmguest-stats
 
- * Dstat - Tool to correlate many system resource statistics (options *--vm-cpu* and *--vm-mem*)
+ * Dstat - *Tool to correlate many system resource statistics* (see options *--vm-cpu*, *--vm-mem* and *--vm-mem-adv*)  
    http://github.com/dagwieers/dstat
 
 
