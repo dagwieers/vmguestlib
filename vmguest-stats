@@ -66,12 +66,22 @@ while count == -1 or count > 0:
         NewStolenMs = gl.GetCpuStolenMs()
         NewUsedMs = gl.GetCpuUsedMs()
 
+        # Make sure that if time stands still we don't end up in infinity
+        if NewElapsedMs == OldElapsedMs:
+            UsedCpu = 0
+            StolenCpu = 0
+            EffectiveMhz = 0
+        else:
+            UsedCpu = (NewUsedMs - OldUsedMs) * 100.0 / (NewElapsedMs - OldElapsedMs)
+            StolenCpu = (NewStolenMs - OldStolenMs) * 100.0 / (NewElapsedMs - OldElapsedMs)
+            EffectiveMhz = gl.GetHostProcessorSpeed() * (NewUsedMs - OldUsedMs) / (NewElapsedMs - OldElapsedMs)
+
         CpuLimit = gl.GetCpuLimitMHz()
 
         print 'VM Processor'
-        print '    Processor Time: %.2f %%' % ((NewUsedMs - OldUsedMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
-        print '    CPU stolen time: %.2f %%' % ((NewStolenMs - OldStolenMs) * 100.0 / (NewElapsedMs - OldElapsedMs))
-        print '    Effective VM Speed: %d MHz' % (gl.GetHostProcessorSpeed() * (NewUsedMs - OldUsedMs) / (NewElapsedMs - OldElapsedMs))
+        print '    Processor Time: %.2f %%' % UsedCpu
+        print '    CPU stolen time: %.2f %%' % StolenCpu
+        print '    Effective VM Speed: %d MHz' % EffectiveMhz
         print '    Host processor speed: %d MHz' % gl.GetHostProcessorSpeed()
         print
         if CpuLimit < 0:
