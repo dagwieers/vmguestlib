@@ -1,24 +1,21 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 
-import sys
 try:
     from setuptools import setup
 except:
     from distutils.core import setup
 
-
-VERSION = (0, 1, 0)
-
+VERSION = (0, 1, 1)
 
 if __name__ == '__main__':
 
     setup(
         name = 'vmguestlib',
-        version = '0.1.0',
+        version = '0.1.1',
         author='Dag Wieers',
         author_email='dag@wieers.com',
         url='http://github.com/dagwieers/vmguestlib',
-        download_url='http://pysphere.googlecode.com/files/pysphere-0.1.8.zip',
+        download_url='http://github.com/dagwieers/vmguestlib/archive/vmguestlib-0.1.1.tar.gz',
         description='Python API for interacting with VMware\'s VMGuestLib SDK',
         license = 'GPL',
         py_modules = ['vmguestlib', ],
@@ -48,3 +45,5 @@ if __name__ == '__main__':
         ],
         long_description='Python API for interacting with VMware\'s VMGuestLib SDK',
     )
+
+# vim:ts=4:sw=4:et
