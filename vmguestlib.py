@@ -217,6 +217,78 @@ class VMGuestLib(Structure):
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
+    # TODO: Undocumented routine, needs testing
+    def GetHostCpuUsedMs(self):
+        '''Undocumented.'''
+        counter = c_uint64()
+        ret = vmGuestLib.VMGuestLib_GetHostMemSwappedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemMappedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemMappedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemPhysFreeMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemPhysFreeMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemPhysMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemPhysMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemSharedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemSharedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemSwappedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemSwappedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemUnmappedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemUnmappedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemUsedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemUsedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostNumCpuCores(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostNumCpuCores(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
     def GetHostProcessorSpeed(self):
         '''Retrieves the speed of the ESX system's physical CPU in MHz.'''
         counter = c_uint()
@@ -238,8 +310,31 @@ class VMGuestLib(Structure):
            "vmmemctl" driver).'''
         counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemBalloonedMB(self.handle.value, byref(counter))
-        if ret != VMGUESTLIB_ERROR_SUCCESS:
-            raise VMGuestLibException(ret)
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetMemBalloonMaxMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemBalloonMaxMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetMemBalloonTargetMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemBalloonTargetMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetHostMemKernOvhdMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemKernOvhdMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
     def GetMemLimitMB(self):
@@ -248,6 +343,14 @@ class VMGuestLib(Structure):
            Reservations" on page 14.'''
         counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemLimitMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetMemLLSwappedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemLLSwappedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
@@ -278,7 +381,6 @@ class VMGuestLib(Structure):
         ret = vmGuestLib.VMGuestLib_GetMemReservationMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
-
 
     def GetMemSharedMB(self):
         '''Retrieves the amount of physical memory associated with this virtual
@@ -313,6 +415,14 @@ class VMGuestLib(Structure):
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
+    # TODO: Undocumented routine, needs testing
+    def GetMemSwapTargetMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemSwapTargetMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
     def GetMemTargetSizeMB(self):
         '''Retrieves the size of the target memory allocation for this virtual machine.'''
         counter = c_uint()
@@ -325,6 +435,22 @@ class VMGuestLib(Structure):
            consumed for this virtual machine's physical memory.'''
         counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemUsedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetMemZippedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemZippedMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
+    def GetMemZipSavedMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetMemZipSavedMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
