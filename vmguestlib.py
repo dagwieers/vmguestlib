@@ -18,7 +18,7 @@ from ctypes import *
 from ctypes.util import find_library
 
 __author__ = 'Dag Wieers <dag@wieers.com>'
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __version_info__ = tuple([ int(d) for d in __version__.split('.') ])
 __license__ = 'GNU General Public License (GPL)'
 
