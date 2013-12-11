@@ -224,6 +224,14 @@ class VMGuestLib(Structure):
         return counter.value
 
     # TODO: Undocumented routine, needs testing
+    def GetHostMemKernOvhdMB(self):
+        '''Undocumented.'''
+        counter = c_uint()
+        ret = vmGuestLib.VMGuestLib_GetHostMemKernOvhdMB(self.handle.value, byref(counter))
+        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+        return counter.value
+
+    # TODO: Undocumented routine, needs testing
     def GetHostMemMappedMB(self):
         '''Undocumented.'''
         counter = c_uint()
@@ -324,14 +332,6 @@ class VMGuestLib(Structure):
         '''Undocumented.'''
         counter = c_uint()
         ret = vmGuestLib.VMGuestLib_GetMemBalloonTargetMB(self.handle.value, byref(counter))
-        if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
-        return counter.value
-
-    # TODO: Undocumented routine, needs testing
-    def GetHostMemKernOvhdMB(self):
-        '''Undocumented.'''
-        counter = c_uint()
-        ret = vmGuestLib.VMGuestLib_GetHostMemKernOvhdMB(self.handle.value, byref(counter))
         if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
         return counter.value
 
