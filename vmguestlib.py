@@ -109,9 +109,6 @@ class VMGuestLib(Structure):
         # VMSessionID is defined in vmSessionId.h
         self.sid = self.GetSessionId()
 
-    def __del__(self):
-        self.CloseHandle()
-
     def OpenHandle(self):
         '''Gets a handle for use with other vSphere Guest API functions. The guest library
            handle provides a context for accessing information about the virtual machine.
@@ -131,6 +128,7 @@ class VMGuestLib(Structure):
         if hasattr(self, 'handle'):
             ret = vmGuestLib.VMGuestLib_CloseHandle(self.handle.value)
             if ret != VMGUESTLIB_ERROR_SUCCESS: raise VMGuestLibException(ret)
+            del(self.handle)
 
     def UpdateInfo(self):
         '''Updates information about the virtual machine. This information is associated with

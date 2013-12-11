@@ -38,6 +38,8 @@ print '  Shared saved: %d MB' % gl.GetMemSharedSavedMB()
 print '  Swapped: %d MB' % gl.GetMemSwappedMB()
 print '  Used: %d MB' % gl.GetMemUsedMB()
 print
+
+gl.CloseHandle()
 ```
 
 
