@@ -43,6 +43,39 @@ gl.CloseHandle()
 ```
 
 
+vmguest-stats tool
+------------------
+The vmguestlib package includes a basic vmguest-stats tool to get all
+vmguestlib counters. It outputs this:
+```
+[user@system ~]$ vmguest-stats
+VM Processor
+    Processor Time: 4.64 %
+    CPU stolen time: 0.15 %
+    Effective VM Speed: 136 MHz
+    Host processor speed: 2932 MHz
+
+    Limit: unlimited
+    Reservation: 0 MHz
+    Shares: 4000
+
+VM Memory
+    Active: 1105 MB
+    Ballooned: 0 MB
+    Mapped: 12288 MB
+    Overhead: 110 MB
+    Shared: 69 MB
+    Shared Saved: 68 MB
+    Swapped: 0 MB
+    Target Size: 12219 MB
+    Used: 12219 MB
+
+    Limit: unlimited
+    Reservation: 0 MB
+    Shares: 122880
+```
+
+
 Tools
 -----
 Tools known to be using vmguestlib:
