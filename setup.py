@@ -20,7 +20,7 @@ if __name__ == '__main__':
         license = 'GPLv2',
         install_requires=['ctypes', ],
         py_modules = ['vmguestlib', ],
-        scripts=[ 'bin/vmguest-stats', ],
+        scripts=[ 'vmguest-stats', ],
         keywords = ['Virtual', 'vmware', 'ESX', 'ESXi', 'VMGuestLib', 'SDK', 'API'],
         classifiers = [
             'Programming Language :: Python',
