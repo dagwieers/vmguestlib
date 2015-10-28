@@ -25,6 +25,8 @@ __license__ = 'GNU General Public License (GPL)'
 # TODO: Implement support for Windows and MacOSX, improve Linux support ?
 if find_library('vmGuestLib'):
     vmGuestLib = CDLL(find_library('vmGuestLib'))
+elif find_library('guestlib'):
+    vmGuestLib = CDLL(find_library('guestlib'))
 #elif os.path.exists('/usr/lib/vmware-tools/lib/libvmGuestLib.so/libvmGuestLib.so'):
 #    vmGuestLib = CDLL('/usr/lib/vmware-tools/lib/libvmGuestLib.so/libvmGuestLib.so')
 #elif os.path.exists('%PROGRAMFILES%\\VMware\\VMware Tools\\Guest SDK\\vmStatsProvider\win32\\vmGuestLib.dll'):
