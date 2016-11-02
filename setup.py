@@ -10,7 +10,7 @@ VERSION = (0, 1, 2)
 if __name__ == '__main__':
 
     setup(
-        name = 'vmguestlib',
+        name = 'python-vmguestlib',
         version = '0.1.2',
         author='Dag Wieers',
         author_email='dag@wieers.com',
@@ -45,7 +45,9 @@ if __name__ == '__main__':
             'Topic :: System :: Systems Administration',
             'Topic :: Utilities'
         ],
-        long_description='Python API for interacting with VMware\'s VMGuestLib SDK',
+        long_description='''Python API for interacting with VMware\'s VMGuestLib SDK
+This software is (c) 2013-2014 Dag Wieers dag@wieers.com
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.''',
     )
 
 # vim:ts=4:sw=4:et
