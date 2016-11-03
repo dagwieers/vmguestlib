@@ -111,6 +111,15 @@ Packaging guidelines
 Please package this software using the name "python-vmguestlib" on all platforms,
 and include the vmguest-stats utility as-is.
 
+With python comes a packaging tool: setuptools.
+https://pypi.python.org/pypi/setuptools
+Example for rpm:
+```
+git clone https://github.com/dagwieers/vmguestlib.git
+cd vmguestlib
+python setup.py bdist_rpm
+```
+
 
 Author and license
 ------------------
