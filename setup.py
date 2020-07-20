@@ -18,7 +18,7 @@ if __name__ == '__main__':
         download_url='http://github.com/dagwieers/vmguestlib/archive/0.1.2.tar.gz',
         description='Python API for interacting with VMware\'s VMGuestLib SDK',
         license = 'GPLv2',
-        install_requires=['ctypes', ],
+        install_requires=[],
         py_modules = ['vmguestlib', ],
         scripts=[ 'vmguest-stats', ],
         keywords = ['Virtual', 'vmware', 'ESX', 'ESXi', 'VMGuestLib', 'SDK', 'API'],
