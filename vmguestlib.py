@@ -32,7 +32,7 @@ elif find_library('guestlib'):
 #elif os.path.exists('%PROGRAMFILES%\\VMware\\VMware Tools\\Guest SDK\\vmStatsProvider\win32\\vmGuestLib.dll'):
 #    vmGuestLib = CDLL('%PROGRAMFILES%\\VMware\\VMware Tools\\Guest SDK\\vmStatsProvider\win32\\vmGuestLib.dll')
 else:
-    raise Exception, 'ERROR: Cannot find vmGuestLib library in LD_LIBRARY_PATH'
+    raise Exception('ERROR: Cannot find vmGuestLib library in LD_LIBRARY_PATH')
 
 VMGUESTLIB_ERROR_SUCCESS = 0
 VMGUESTLIB_ERROR_OTHER = 1
